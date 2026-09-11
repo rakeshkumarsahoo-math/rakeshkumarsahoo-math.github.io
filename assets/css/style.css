@@ -63,7 +63,7 @@ a {
   top: 0;
   z-index: 100;
 
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(10px);
 
   border-bottom: 1px solid var(--border);
@@ -79,11 +79,6 @@ a {
   gap: 24px;
 }
 
-
-/* =========================================================
-   BRAND
-   ========================================================= */
-
 .brand {
   font-weight: 800;
   text-decoration: none;
@@ -93,7 +88,7 @@ a {
 
 
 /* =========================================================
-   NAVIGATION
+   MAIN NAVIGATION
    ========================================================= */
 
 .nav {
@@ -102,7 +97,6 @@ a {
   justify-content: flex-end;
 
   gap: 4px;
-
   flex-wrap: nowrap;
 }
 
@@ -113,13 +107,12 @@ a {
   color: #4f5862;
 
   padding: 9px 10px;
-
   border-radius: 8px;
 
   font-size: 0.9rem;
   font-weight: 500;
 
-  white-space: nowrap;
+  display: block;
 
   transition:
     color 0.2s ease,
@@ -127,24 +120,19 @@ a {
 }
 
 .nav > a:hover,
-.nav > a.active,
-.more-menu:hover > .more-link,
-.more-menu:focus-within > .more-link {
+.nav > a.active {
   color: var(--accent);
   background: var(--soft);
 }
 
 
 /* =========================================================
-   MORE MENU
+   MORE DROPDOWN
    ========================================================= */
 
 /*
-   IMPORTANT:
-   This is a normal <div>, NOT <details>.
-
-   The dropdown appears when the mouse is placed over
-   "More..." or when the menu receives keyboard focus.
+   Important:
+   .more-menu is a container, not a normal navigation link.
 */
 
 .more-menu {
@@ -153,11 +141,24 @@ a {
 }
 
 
-/* More... link */
+/* More... button */
 
-.more-link {
-  display: block;
+.more-menu .more-link {
   cursor: pointer;
+
+  /* Remove underline completely */
+  text-decoration: none !important;
+
+  color: #4f5862;
+}
+
+.more-menu .more-link:hover,
+.more-menu:hover .more-link {
+  color: var(--accent);
+  background: var(--soft);
+
+  /* Make sure underline NEVER appears */
+  text-decoration: none !important;
 }
 
 
@@ -167,47 +168,40 @@ a {
   position: absolute;
 
   top: calc(100% + 6px);
-  left: 0;
+  right: 0;
 
   min-width: 190px;
-
-  padding: 7px;
 
   background: var(--surface);
 
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 10px;
+
+  padding: 6px;
 
   box-shadow: var(--shadow);
 
-  /* Hidden by default */
+  /* Hidden initially */
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
 
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 
   transition:
     opacity 0.18s ease,
-    visibility 0.18s ease,
-    transform 0.18s ease;
+    transform 0.18s ease,
+    visibility 0.18s ease;
 }
 
 
-/* Small invisible bridge between More and dropdown.
-   This prevents the dropdown disappearing when the mouse
-   moves from "More..." into the dropdown. */
+/* Show dropdown when mouse is over More */
 
-.more-dropdown::before {
-  content: "";
+.more-menu:hover .more-dropdown,
+.more-menu:focus-within .more-dropdown {
+  opacity: 1;
+  visibility: visible;
 
-  position: absolute;
-
-  top: -7px;
-  left: 0;
-  right: 0;
-
-  height: 7px;
+  transform: translateY(0);
 }
 
 
@@ -218,14 +212,14 @@ a {
 
   padding: 10px 13px;
 
-  border-radius: 8px;
-
-  text-decoration: none;
-
   color: #4f5862;
 
   font-size: 0.9rem;
   font-weight: 500;
+
+  text-decoration: none !important;
+
+  border-radius: 7px;
 
   white-space: nowrap;
 
@@ -237,25 +231,12 @@ a {
 
 /* Dropdown hover */
 
-.more-dropdown a:hover,
-.more-dropdown a:focus {
+.more-dropdown a:hover {
   color: var(--accent);
+
   background: var(--soft);
-}
 
-
-/* Show dropdown on hover */
-
-.more-menu:hover .more-dropdown,
-
-/* Show dropdown when keyboard focused */
-
-.more-menu:focus-within .more-dropdown {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-
-  transform: translateY(0);
+  text-decoration: none !important;
 }
 
 
@@ -267,7 +248,6 @@ a {
   display: none;
 
   border: 1px solid var(--border);
-
   background: white;
 
   border-radius: 8px;
@@ -307,11 +287,6 @@ a {
 
   box-shadow: var(--shadow);
 }
-
-
-/* =========================================================
-   PROFILE PHOTO
-   ========================================================= */
 
 .profile-photo-wrap {
   text-align: center;
@@ -363,7 +338,6 @@ h1,
 h2,
 h3 {
   line-height: 1.2;
-
   margin-top: 0;
 }
 
@@ -427,33 +401,25 @@ h3 {
 
   text-decoration: none;
 
-  font-size: 1rem;
+  font-size: 0.9rem;
 
   font-weight: 800;
 
   color: var(--accent);
 
-  background: var(--surface);
-
   transition:
-    color 0.2s ease,
     background 0.2s ease,
     border-color 0.2s ease,
     transform 0.2s ease;
 }
 
 .social-links a:hover {
-  color: white;
-
-  background: var(--accent);
+  background: var(--soft);
 
   border-color: var(--accent);
 
   transform: translateY(-2px);
 }
-
-
-/* Font Awesome icon sizing */
 
 .social-links a i {
   font-size: 17px;
@@ -486,15 +452,6 @@ h3 {
   font-size: 0.9rem;
 
   border: 1px solid var(--accent);
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.button:hover {
-  transform: translateY(-2px);
 }
 
 .button.primary {
@@ -569,20 +526,6 @@ h3 {
   box-shadow: 0 5px 20px rgba(25, 40, 55, 0.045);
 }
 
-
-/* Card spacing */
-
-.content-card + .content-card,
-.section + .content-card,
-.content-card + .grid {
-  margin-top: 32px;
-}
-
-
-/* =========================================================
-   FEATURE CARDS
-   ========================================================= */
-
 .feature-card {
   text-decoration: none;
 
@@ -604,7 +547,7 @@ h3 {
 
 
 /* =========================================================
-   CARD ICONS
+   CARD ICON
    ========================================================= */
 
 .icon {
@@ -632,7 +575,18 @@ h3 {
 
 
 /* =========================================================
-   TAG LIST
+   SPACING BETWEEN CARDS
+   ========================================================= */
+
+.content-card + .content-card,
+.section + .content-card,
+.content-card + .grid {
+  margin-top: 32px;
+}
+
+
+/* =========================================================
+   TAGS
    ========================================================= */
 
 .tag-list {
@@ -718,7 +672,6 @@ h3 {
   position: absolute;
 
   left: 0;
-
   top: 30px;
 
   width: 20px;
@@ -793,7 +746,7 @@ h3 {
 
 
 /* =========================================================
-   CV CARD
+   CV
    ========================================================= */
 
 .cv-card {
@@ -813,7 +766,6 @@ h3 {
   background: var(--soft);
 
   display: grid;
-
   place-items: center;
 
   color: var(--accent);
@@ -863,6 +815,120 @@ code {
 
 
 /* =========================================================
+   TEACHING PAGE
+   ========================================================= */
+
+.teaching-course {
+  overflow: visible;
+}
+
+.teaching-course summary {
+  cursor: pointer;
+
+  list-style: none;
+}
+
+.teaching-course summary::-webkit-details-marker {
+  display: none;
+}
+
+.teaching-course summary::after {
+  content: "⌄";
+
+  float: right;
+
+  color: var(--accent);
+
+  font-size: 1.2rem;
+}
+
+.teaching-course[open] summary::after {
+  content: "⌃";
+}
+
+.course-header h2 {
+  margin-top: 5px;
+
+  margin-bottom: 12px;
+}
+
+.course-role {
+  margin: 0 0 8px;
+
+  color: var(--text) !important;
+
+  font-weight: 600;
+}
+
+.course-instructor {
+  margin: 0;
+
+  color: var(--muted);
+}
+
+.course-details {
+  border-top: 1px solid var(--border);
+
+  margin-top: 24px;
+
+  padding-top: 24px;
+}
+
+.course-details h3 {
+  margin-top: 22px;
+}
+
+.course-details h3:first-child {
+  margin-top: 0;
+}
+
+.material-links {
+  display: flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 10px;
+}
+
+.material-button {
+  display: inline-block;
+
+  padding: 9px 15px;
+
+  border: 1px solid var(--accent);
+
+  border-radius: 9px;
+
+  color: var(--accent);
+
+  background: white;
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  font-size: 0.9rem;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.material-button:hover {
+  background: var(--accent);
+
+  color: white;
+
+  transform: translateY(-2px);
+
+  text-decoration: none;
+}
+
+
+/* =========================================================
    VISITOR COUNTER
    ========================================================= */
 
@@ -888,7 +954,7 @@ code {
 
 
 /* =========================================================
-   MOBILE / TABLET
+   RESPONSIVE — TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
@@ -918,7 +984,7 @@ code {
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE — MOBILE
    ========================================================= */
 
 @media (max-width: 720px) {
@@ -958,8 +1024,6 @@ code {
     flex-direction: column;
 
     align-items: stretch;
-
-    gap: 2px;
   }
 
   .nav.open {
@@ -967,85 +1031,61 @@ code {
   }
 
 
-  /* Mobile navigation links */
-
   .nav > a,
   .more-link {
-    display: block;
+    padding: 11px 12px;
 
     width: 100%;
-
-    padding: 11px 12px;
   }
 
 
-  /* More menu on mobile */
+  /*
+     On mobile, More becomes a normal
+     expandable-looking menu item.
+  */
 
   .more-menu {
     width: 100%;
   }
 
-  .more-link {
-    cursor: pointer;
+  .more-menu .more-link {
+    width: 100%;
   }
-
-
-  /*
-     On mobile, the dropdown becomes part of
-     the normal navigation flow.
-  */
 
   .more-dropdown {
     position: static;
 
+    width: 100%;
+
     min-width: 0;
 
-    margin: 0 0 4px 10px;
+    margin-top: 4px;
 
-    padding: 4px;
+    padding: 4px 0 4px 12px;
 
-    border: 0;
-
-    border-left: 2px solid var(--border);
+    border: none;
 
     border-radius: 0;
 
     box-shadow: none;
 
-    transform: none;
+    background: transparent;
 
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    max-height: 0;
-
-    overflow: hidden;
-
-    transition:
-      opacity 0.2s ease,
-      max-height 0.2s ease;
-  }
-
-
-  /* Open mobile More menu */
-
-  .more-menu:hover .more-dropdown,
-  .more-menu:focus-within .more-dropdown {
     opacity: 1;
 
     visibility: visible;
 
-    pointer-events: auto;
+    transform: none;
 
-    max-height: 300px;
+    display: none;
   }
 
+  .more-menu:hover .more-dropdown {
+    display: block;
+  }
 
   .more-dropdown a {
-    padding: 9px 13px;
+    padding: 9px 12px;
   }
 
 
@@ -1062,16 +1102,10 @@ code {
     height: 155px;
   }
 
-
-  /* Grids */
-
   .grid.two,
   .grid.three {
     grid-template-columns: 1fr;
   }
-
-
-  /* Page */
 
   .page {
     padding-top: 40px;
