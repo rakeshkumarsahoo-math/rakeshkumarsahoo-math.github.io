@@ -1,32 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap');
 
-
-/* =========================================================
-   ROOT VARIABLES
-   ========================================================= */
-
 :root {
   --bg: #f6f8fa;
   --surface: #ffffff;
   --text: #18212b;
   --muted: #5f6873;
   --border: #e4e8ed;
-
   --accent: #214d68;
   --accent-dark: #17394d;
-
   --soft: #f0f4f7;
-
   --shadow: 0 10px 30px rgba(25, 40, 55, 0.08);
-
   --radius: 16px;
   --max: 1060px;
 }
-
-
-/* =========================================================
-   GLOBAL
-   ========================================================= */
 
 * {
   box-sizing: border-box;
@@ -61,21 +47,17 @@ a {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 20;
-
+  z-index: 1000;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(10px);
-
   border-bottom: 1px solid var(--border);
 }
 
 .nav-container {
   min-height: 74px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 24px;
 }
 
@@ -86,75 +68,89 @@ a {
   white-space: nowrap;
 }
 
-
-/* Main navigation */
-
 .nav {
   display: flex;
   align-items: center;
-
   gap: 4px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
 }
 
-.nav a {
+.nav > a {
   text-decoration: none;
   color: #4f5862;
-
   padding: 9px 10px;
   border-radius: 8px;
-
   font-size: 0.9rem;
-  font-weight: 500;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.nav a:hover,
-.nav a.active {
-  color: var(--accent);
-  background: var(--soft);
-}
-/* =========================================
-   MORE... HOVER DROPDOWN
-   ========================================= */
-
-.more-menu {
-  position: relative;
-  display: inline-block;
-}
-
-/* More... should look like normal navigation */
-.more-menu .more-link {
-  display: block;
-  text-decoration: none;
-  color: #4f5862;
-  padding: 9px 10px;
-  border-radius: 8px;
-  font-size: .9rem;
   font-weight: 500;
   white-space: nowrap;
 }
 
-/* Hover effect for More... */
-.more-menu:hover .more-link,
-.more-menu:focus-within .more-link {
+.nav > a:hover,
+.nav > a.active {
   color: var(--accent);
   background: var(--soft);
 }
 
-/* Dropdown */
+
+/* =========================================================
+   MORE... DROPDOWN
+   ========================================================= */
+
+.more-menu {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Remove the default triangle */
+.more-menu summary {
+  list-style: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #4f5862;
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Remove triangle in Chrome/Safari */
+.more-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Remove triangle in Firefox */
+.more-menu summary::marker {
+  display: none;
+}
+
+/* Small arrow */
+.more-menu summary::after {
+  content: "▾";
+  font-size: 0.7rem;
+  margin-left: 5px;
+  vertical-align: 1px;
+  transition: transform 0.2s ease;
+}
+
+/* Highlight More... */
+.more-menu:hover summary,
+.more-menu[open] summary {
+  color: var(--accent);
+  background: var(--soft);
+}
+
+/* Dropdown box */
 .more-dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 6px);
+  right: 0;
 
   min-width: 190px;
 
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
 
@@ -162,22 +158,21 @@ a {
 
   box-shadow: var(--shadow);
 
-  z-index: 100;
-
-  /* Hidden initially */
   opacity: 0;
   visibility: hidden;
-  transform: translateY(5px);
+  transform: translateY(-5px);
 
   transition:
-    opacity .18s ease,
-    transform .18s ease,
-    visibility .18s ease;
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    visibility 0.18s ease;
+
+  z-index: 2000;
 }
 
-/* Show dropdown when cursor is over More... */
+/* Show dropdown when hovering More... */
 .more-menu:hover .more-dropdown,
-.more-menu:focus-within .more-dropdown {
+.more-menu[open] .more-dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -187,223 +182,26 @@ a {
 .more-dropdown a {
   display: block;
 
-  padding: 10px 13px;
+  padding: 9px 12px;
 
   color: #4f5862;
-  background: transparent;
-
-  text-decoration: none;
-
-  font-size: .88rem;
-  font-weight: 500;
-
-  white-space: nowrap;
-
-  border-radius: 7px;
-
-  transition:
-    background .18s ease,
-    color .18s ease;
-}
-
-/* Dropdown link hover */
-.more-dropdown a:hover {
-  background: var(--soft);
-  color: var(--accent);
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 720px) {
-
-  .more-menu {
-    width: 100%;
-  }
-
-  .more-menu .more-link {
-    width: 100%;
-    padding: 11px 12px;
-  }
-
-  .more-dropdown {
-    position: static;
-
-    width: 100%;
-    min-width: 0;
-
-    margin-top: 4px;
-
-    border: 0;
-    border-radius: 8px;
-
-    box-shadow: none;
-
-    background: var(--soft);
-
-    padding: 4px;
-
-    /* Mobile: keep it hidden until focus/interaction */
-    transform: none;
-  }
-
-  .more-menu:hover .more-dropdown,
-  .more-menu:focus-within .more-dropdown {
-    transform: none;
-  }
-
-  .more-dropdown a {
-    padding: 10px 14px;
-  }
-
-}
-
-.nav-dropdown {
-  position: relative;
-}
-
-
-/* "More..." button */
-
-.nav-more {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  border: none;
-  background: transparent;
-
-  color: #4f5862;
-
-  padding: 9px 10px;
-  border-radius: 8px;
-
-  font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 500;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.nav-more:hover,
-.nav-dropdown:hover .nav-more,
-.nav-dropdown:focus-within .nav-more {
-  color: var(--accent);
-  background: var(--soft);
-}
-
-
-/* Small arrow */
-
-.nav-more::after {
-  content: "▾";
-
-  font-size: 0.7rem;
-  margin-left: 2px;
-
-  transition: transform 0.2s ease;
-}
-
-.nav-dropdown:hover .nav-more::after,
-.nav-dropdown:focus-within .nav-more::after {
-  transform: rotate(180deg);
-}
-
-
-/* Dropdown box */
-
-.dropdown-menu {
-  position: absolute;
-
-  top: calc(100% + 8px);
-  right: 0;
-
-  min-width: 190px;
-
-  padding: 6px;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-  border-radius: 10px;
-
-  box-shadow: var(--shadow);
-
-  opacity: 0;
-  visibility: hidden;
-
-  transform: translateY(-6px);
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s ease;
-
-  z-index: 50;
-}
-
-
-/* Invisible hover bridge so dropdown does not disappear
-   when moving mouse from More... to the dropdown */
-
-.nav-dropdown::after {
-  content: "";
-
-  position: absolute;
-
-  top: 100%;
-  left: 0;
-  right: 0;
-
-  height: 10px;
-}
-
-
-/* Show dropdown */
-
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-
-/* Dropdown links */
-
-.dropdown-menu a {
-  display: block;
-
-  width: 100%;
-
-  padding: 10px 12px;
-
-  border-radius: 7px;
-
-  color: #4f5862;
-
   text-decoration: none;
 
   font-size: 0.88rem;
   font-weight: 500;
 
+  border-radius: 7px;
+
   white-space: nowrap;
 
   transition:
-    background 0.2s ease,
-    color 0.2s ease;
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
-.dropdown-menu a:hover,
-.dropdown-menu a:focus {
-  background: var(--soft);
+.more-dropdown a:hover {
   color: var(--accent);
+  background: var(--soft);
 }
 
 
@@ -413,22 +211,16 @@ a {
 
 .menu-toggle {
   display: none;
-
   border: 1px solid var(--border);
   background: white;
-
   border-radius: 8px;
-
   padding: 8px 10px;
-
   font-size: 1.1rem;
-
-  cursor: pointer;
 }
 
 
 /* =========================================================
-   HOME / HERO
+   HERO / HOME PAGE
    ========================================================= */
 
 .hero {
@@ -437,15 +229,11 @@ a {
 
 .profile-card {
   display: grid;
-
   grid-template-columns: 250px 1fr;
-
   gap: 42px;
-
   align-items: center;
 
   background: var(--surface);
-
   border: 1px solid var(--border);
   border-radius: var(--radius);
 
@@ -461,39 +249,26 @@ a {
 .profile-photo {
   width: 190px;
   height: 190px;
-
   object-fit: cover;
-
   border-radius: 50%;
 
   border: 3px solid #dbe5eb;
 
   display: block;
-
   margin: auto;
 }
 
 .photo-note {
   color: #89919a;
-
   font-size: 0.78rem;
-
   margin: 10px 0 0;
 }
 
-
-/* =========================================================
-   TYPOGRAPHY
-   ========================================================= */
-
 .eyebrow {
   color: var(--accent);
-
   font-size: 0.82rem;
   font-weight: 700;
-
   letter-spacing: 0.08em;
-
   text-transform: uppercase;
 
   margin: 0 0 8px;
@@ -508,27 +283,22 @@ h3 {
 
 h1 {
   font-size: clamp(2rem, 4vw, 3.2rem);
-
   margin-bottom: 18px;
-
   letter-spacing: -0.03em;
 }
 
 h2 {
   font-size: 1.65rem;
-
   margin-bottom: 18px;
 }
 
 h3 {
   font-size: 1.05rem;
-
   margin-bottom: 7px;
 }
 
 .lead {
   font-size: 1.12rem;
-
   color: #3f4852;
 }
 
@@ -547,18 +317,15 @@ h3 {
 
 .social-links {
   display: flex;
-
   gap: 10px;
-
   margin: 24px 0;
 }
 
 .social-links a {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
 
   border: 1px solid var(--border);
-
   border-radius: 10px;
 
   display: grid;
@@ -572,17 +339,15 @@ h3 {
   color: var(--accent);
 
   transition:
+    transform 0.2s ease,
     background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+    border-color 0.2s ease;
 }
 
 .social-links a:hover {
   background: var(--soft);
-
   border-color: var(--accent);
-
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 
@@ -592,9 +357,7 @@ h3 {
 
 .button-row {
   display: flex;
-
   gap: 10px;
-
   flex-wrap: wrap;
 }
 
@@ -615,7 +378,6 @@ h3 {
 
 .button.primary {
   background: var(--accent);
-
   color: white;
 }
 
@@ -625,7 +387,6 @@ h3 {
 
 .button.secondary {
   color: var(--accent);
-
   background: white;
 }
 
@@ -635,12 +396,11 @@ h3 {
 
 
 /* =========================================================
-   SECTIONS
+   GENERAL SECTIONS
    ========================================================= */
 
 .section {
   padding: 66px 0 0;
-
   margin-bottom: 35px;
 }
 
@@ -648,14 +408,8 @@ h3 {
   margin-bottom: 24px;
 }
 
-
-/* =========================================================
-   GRID
-   ========================================================= */
-
 .grid {
   display: grid;
-
   gap: 18px;
 }
 
@@ -677,13 +431,11 @@ h3 {
   background: var(--surface);
 
   border: 1px solid var(--border);
-
   border-radius: var(--radius);
 
   padding: 28px;
 
-  box-shadow:
-    0 5px 20px rgba(25, 40, 55, 0.045);
+  box-shadow: 0 5px 20px rgba(25, 40, 55, 0.045);
 }
 
 .feature-card {
@@ -691,16 +443,12 @@ h3 {
 
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    box-shadow 0.2s ease;
 }
 
 .feature-card:hover {
   transform: translateY(-3px);
-
   box-shadow: var(--shadow);
-
-  border-color: #d5dfe6;
 }
 
 .feature-card p,
@@ -726,7 +474,6 @@ h3 {
 
 .icon {
   display: inline-grid;
-
   place-items: center;
 
   width: 40px;
@@ -735,7 +482,6 @@ h3 {
   border-radius: 10px;
 
   background: var(--soft);
-
   color: var(--accent);
 
   font-weight: 800;
@@ -750,9 +496,7 @@ h3 {
 
 .tag-list {
   display: flex;
-
   gap: 10px;
-
   flex-wrap: wrap;
 }
 
@@ -760,13 +504,11 @@ h3 {
   background: var(--surface);
 
   border: 1px solid var(--border);
-
   border-radius: 999px;
 
   padding: 8px 13px;
 
   font-size: 0.88rem;
-
   color: #47525d;
 }
 
@@ -777,7 +519,6 @@ h3 {
 
 .page {
   padding: 60px 0 90px;
-
   min-height: calc(100vh - 150px);
 }
 
@@ -791,7 +532,6 @@ h3 {
 
 .page-header p:last-child {
   color: var(--muted);
-
   margin-top: 0;
 }
 
@@ -810,7 +550,6 @@ h3 {
   position: absolute;
 
   left: 9px;
-
   top: 15px;
   bottom: 15px;
 
@@ -831,7 +570,6 @@ h3 {
   position: absolute;
 
   left: 0;
-
   top: 30px;
 
   width: 20px;
@@ -846,27 +584,23 @@ h3 {
 
 
 /* =========================================================
-   DATE / LINKS
+   DATES / LINKS
    ========================================================= */
 
 .date {
   color: var(--accent);
 
   font-size: 0.78rem;
-
   font-weight: 800;
 
   letter-spacing: 0.06em;
-
   text-transform: uppercase;
 }
 
 .links,
 .contact-links {
   display: flex;
-
   gap: 10px;
-
   flex-wrap: wrap;
 
   margin-top: 16px;
@@ -890,14 +624,22 @@ h3 {
 
 
 /* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+.placeholder {
+  margin-top: 18px;
+  border-style: dashed;
+}
+
+
+/* =========================================================
    CV
    ========================================================= */
 
 .cv-card {
   display: flex;
-
   align-items: center;
-
   gap: 24px;
 }
 
@@ -908,11 +650,10 @@ h3 {
   border-radius: 14px;
 
   background: var(--soft);
+  color: var(--accent);
 
   display: grid;
   place-items: center;
-
-  color: var(--accent);
 
   font-weight: 800;
 }
@@ -932,259 +673,11 @@ code {
 
 
 /* =========================================================
-   TEACHING PAGE
-   ========================================================= */
-
-
-/* Expandable teaching course card */
-
-.teaching-course {
-  padding: 0;
-
-  overflow: hidden;
-}
-
-
-/* Remove default browser triangle */
-
-.teaching-course summary {
-  list-style: none;
-
-  cursor: pointer;
-
-  padding: 28px;
-
-  position: relative;
-
-  transition: background 0.2s ease;
-}
-
-.teaching-course summary::-webkit-details-marker {
-  display: none;
-}
-
-
-/* Course open/close arrow */
-
-.teaching-course summary::after {
-  content: "⌄";
-
-  position: absolute;
-
-  right: 28px;
-  top: 30px;
-
-  color: var(--accent);
-
-  font-size: 1.35rem;
-
-  font-weight: 700;
-
-  transition: transform 0.25s ease;
-}
-
-
-/* Rotate arrow when course is open */
-
-.teaching-course[open] summary::after {
-  transform: rotate(180deg);
-}
-
-
-/* Hover effect */
-
-.teaching-course summary:hover {
-  background: var(--soft);
-}
-
-
-/* Course heading */
-
-.course-header {
-  padding-right: 40px;
-}
-
-.course-header h2 {
-  margin: 7px 0 12px;
-}
-
-.course-role {
-  margin: 0 0 8px;
-
-  color: var(--text) !important;
-
-  font-weight: 700;
-}
-
-.course-instructor {
-  margin: 0 !important;
-
-  color: var(--muted);
-}
-
-
-/* Expanded content */
-
-.course-details {
-  border-top: 1px solid var(--border);
-
-  padding: 28px;
-
-  animation: teachingOpen 0.25s ease;
-}
-
-.course-details h3 {
-  margin-top: 0;
-
-  margin-bottom: 10px;
-
-  color: var(--text);
-}
-
-.course-details h3:not(:first-child) {
-  margin-top: 26px;
-}
-
-.course-details p {
-  margin-top: 0;
-}
-
-
-/* Opening animation */
-
-@keyframes teachingOpen {
-
-  from {
-    opacity: 0;
-
-    transform: translateY(-5px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform: translateY(0);
-  }
-
-}
-
-
-/* =========================================================
-   TEACHING MATERIAL BUTTONS
-   ========================================================= */
-
-.material-links {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  margin-top: 10px;
-}
-
-.material-button {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 10px 18px;
-
-  background: white;
-
-  border: 1px solid var(--accent);
-
-  border-radius: 9px;
-
-  color: var(--accent);
-
-  text-decoration: none;
-
-  font-size: 0.9rem;
-
-  font-weight: 700;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.material-button:hover {
-  background: var(--accent);
-
-  color: white;
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 5px 14px rgba(25, 40, 55, 0.12);
-}
-
-
-/* =========================================================
-   TEACHING COURSE CARDS
-   ========================================================= */
-
-.teaching-course + .content-card {
-  margin-top: 24px;
-}
-
-
-/* =========================================================
-   VISITOR COUNTER
-   ========================================================= */
-
-.visitor-section {
-  margin-top: 20px;
-}
-
-.visitor-counter {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: flex-start;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-
-  border-radius: var(--radius);
-
-  padding: 20px 24px;
-
-  box-shadow:
-    0 5px 20px rgba(25, 40, 55, 0.045);
-}
-
-.visitor-counter img {
-  max-width: 100%;
-
-  height: auto;
-}
-
-
-/* =========================================================
-   PLACEHOLDER
-   ========================================================= */
-
-.placeholder {
-  margin-top: 18px;
-
-  border-style: dashed;
-}
-
-
-/* =========================================================
    FOOTER
    ========================================================= */
 
 .footer {
   border-top: 1px solid var(--border);
-
   background: white;
 }
 
@@ -1194,7 +687,6 @@ code {
   display: flex;
 
   justify-content: space-between;
-
   align-items: center;
 
   gap: 20px;
@@ -1206,7 +698,113 @@ code {
 
 
 /* =========================================================
-   RESPONSIVE — TABLET
+   TEACHING PAGE
+   ========================================================= */
+
+.teaching-course {
+  overflow: visible;
+}
+
+.teaching-course summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.teaching-course summary::-webkit-details-marker {
+  display: none;
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.course-role {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.course-instructor {
+  margin-bottom: 0;
+}
+
+.course-details {
+  margin-top: 25px;
+  padding-top: 25px;
+
+  border-top: 1px solid var(--border);
+}
+
+.course-details h3 {
+  margin-top: 22px;
+}
+
+.course-details h3:first-child {
+  margin-top: 0;
+}
+
+.material-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  margin-top: 10px;
+}
+
+.material-button {
+  display: inline-block;
+
+  padding: 9px 15px;
+
+  border: 1px solid var(--accent);
+  border-radius: 9px;
+
+  color: var(--accent);
+
+  text-decoration: none;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+
+  background: white;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.material-button:hover {
+  background: var(--accent);
+  color: white;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   VISITOR COUNTER
+   ========================================================= */
+
+.visitor-section {
+  padding-top: 40px;
+}
+
+.visitor-counter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.visitor-counter img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* =========================================================
+   TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
@@ -1215,16 +813,14 @@ code {
     gap: 0;
   }
 
-  .nav a,
-  .nav-more {
+  .nav > a,
+  .more-menu summary {
     padding: 8px 7px;
-
     font-size: 0.82rem;
   }
 
   .profile-card {
     grid-template-columns: 1fr;
-
     text-align: center;
   }
 
@@ -1237,7 +833,7 @@ code {
 
 
 /* =========================================================
-   RESPONSIVE — MOBILE
+   MOBILE
    ========================================================= */
 
 @media (max-width: 720px) {
@@ -1246,15 +842,11 @@ code {
     width: min(calc(100% - 28px), var(--max));
   }
 
-
-  /* Mobile menu button */
-
   .menu-toggle {
     display: block;
   }
 
-
-  /* Main mobile navigation */
+  /* Mobile navigation */
 
   .nav {
     display: none;
@@ -1262,7 +854,6 @@ code {
     position: absolute;
 
     top: 74px;
-
     left: 0;
     right: 0;
 
@@ -1283,34 +874,25 @@ code {
     display: flex;
   }
 
+  .nav > a {
+    padding: 11px 12px;
+  }
 
-  /* Mobile navigation links */
 
-  .nav a,
-  .nav-more {
+  /* Mobile More menu */
+
+  .more-menu {
+    width: 100%;
+  }
+
+  .more-menu summary {
+    display: block;
     width: 100%;
 
     padding: 11px 12px;
-
-    text-align: left;
   }
 
-
-  /* =====================================================
-     MOBILE MORE DROPDOWN
-     ===================================================== */
-
-  .nav-dropdown {
-    width: 100%;
-  }
-
-  .nav-more {
-    justify-content: space-between;
-
-    border-radius: 8px;
-  }
-
-  .dropdown-menu {
+  .more-dropdown {
     position: static;
 
     width: 100%;
@@ -1319,54 +901,38 @@ code {
 
     margin-top: 4px;
 
-    padding: 4px 0 4px 12px;
-
-    border: none;
-
-    border-left: 2px solid var(--border);
-
-    border-radius: 0;
+    padding: 4px;
 
     box-shadow: none;
 
-    background: transparent;
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
 
     opacity: 1;
-
     visibility: visible;
-
     transform: none;
 
     display: none;
   }
 
-
-  /* On mobile, show dropdown when More is focused/hovered */
-
-  .nav-dropdown:hover .dropdown-menu,
-  .nav-dropdown:focus-within .dropdown-menu {
-    display: block;
-  }
-
-  .dropdown-menu a {
-    padding: 10px 12px;
-
-    font-size: 0.88rem;
-  }
-
-
-  /* Disable hover bridge on mobile */
-
-  .nav-dropdown::after {
+  .more-menu:hover .more-dropdown {
     display: none;
   }
 
+  .more-menu[open] .more-dropdown {
+    display: block;
+  }
 
-  /* Profile */
+  .more-dropdown a {
+    padding: 10px 12px;
+  }
+
+
+  /* Home */
 
   .profile-card {
     padding: 30px 22px;
-
     gap: 25px;
   }
 
@@ -1408,52 +974,14 @@ code {
 
   .cv-card {
     flex-direction: column;
-
     align-items: flex-start;
   }
 
 
-  /* =====================================================
-     TEACHING PAGE MOBILE
-     ===================================================== */
-
-  .teaching-course summary {
-    padding: 22px;
-  }
-
-  .teaching-course summary::after {
-    right: 20px;
-
-    top: 24px;
-  }
+  /* Teaching */
 
   .course-header {
-    padding-right: 30px;
-  }
-
-  .course-header h2 {
-    font-size: 1.35rem;
-  }
-
-  .course-details {
-    padding: 22px;
-  }
-
-  .material-links {
-    gap: 8px;
-  }
-
-  .material-button {
-    padding: 9px 14px;
-
-    font-size: 0.85rem;
-  }
-
-
-  /* Visitor counter */
-
-  .visitor-counter {
-    padding: 16px;
+    display: block;
   }
 
 }
