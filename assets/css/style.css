@@ -119,85 +119,102 @@ a {
   background: var(--soft);
 }
 /* =========================================
-   MORE... DROPDOWN MENU
+   MORE... HOVER DROPDOWN
    ========================================= */
 
 .more-menu {
   position: relative;
-  margin: 0;
-  padding: 0;
+  display: inline-block;
 }
 
-/* More... button */
-.more-menu summary {
-  list-style: none;
-  cursor: pointer;
+/* More... should look like normal navigation */
+.more-menu .more-link {
+  display: block;
+  text-decoration: none;
   color: #4f5862;
   padding: 9px 10px;
   border-radius: 8px;
   font-size: .9rem;
   font-weight: 500;
-  transition: background .2s ease, color .2s ease;
+  white-space: nowrap;
 }
 
-/* Remove default triangle */
-.more-menu summary::-webkit-details-marker {
-  display: none;
-}
-
-.more-menu summary::marker {
-  display: none;
-}
-
-/* Hover / opened state */
-.more-menu summary:hover,
-.more-menu[open] summary {
+/* Hover effect for More... */
+.more-menu:hover .more-link,
+.more-menu:focus-within .more-link {
   color: var(--accent);
   background: var(--soft);
 }
 
-/* Dropdown box */
+/* Dropdown */
 .more-dropdown {
   position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
+  top: 100%;
+  left: 0;
+
   min-width: 190px;
 
   background: white;
   border: 1px solid var(--border);
   border-radius: 10px;
-  box-shadow: var(--shadow);
 
   padding: 6px;
+
+  box-shadow: var(--shadow);
+
   z-index: 100;
+
+  /* Hidden initially */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(5px);
+
+  transition:
+    opacity .18s ease,
+    transform .18s ease,
+    visibility .18s ease;
+}
+
+/* Show dropdown when cursor is over More... */
+.more-menu:hover .more-dropdown,
+.more-menu:focus-within .more-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* Dropdown links */
 .more-dropdown a {
   display: block;
-  width: 100%;
 
-  padding: 10px 12px;
-  border-radius: 7px;
+  padding: 10px 13px;
 
   color: #4f5862;
+  background: transparent;
+
   text-decoration: none;
 
   font-size: .88rem;
   font-weight: 500;
+
   white-space: nowrap;
 
-  transition: background .2s ease, color .2s ease;
+  border-radius: 7px;
+
+  transition:
+    background .18s ease,
+    color .18s ease;
 }
 
-/* Dropdown hover */
+/* Dropdown link hover */
 .more-dropdown a:hover {
-  color: var(--accent);
   background: var(--soft);
+  color: var(--accent);
 }
+
 
 /* =========================================
-   MOBILE MORE MENU
+   MOBILE
    ========================================= */
 
 @media (max-width: 720px) {
@@ -206,13 +223,14 @@ a {
     width: 100%;
   }
 
-  .more-menu summary {
+  .more-menu .more-link {
     width: 100%;
     padding: 11px 12px;
   }
 
   .more-dropdown {
     position: static;
+
     width: 100%;
     min-width: 0;
 
@@ -220,10 +238,20 @@ a {
 
     border: 0;
     border-radius: 8px;
+
     box-shadow: none;
 
     background: var(--soft);
+
     padding: 4px;
+
+    /* Mobile: keep it hidden until focus/interaction */
+    transform: none;
+  }
+
+  .more-menu:hover .more-dropdown,
+  .more-menu:focus-within .more-dropdown {
+    transform: none;
   }
 
   .more-dropdown a {
@@ -231,10 +259,6 @@ a {
   }
 
 }
-
-/* =========================================================
-   MORE DROPDOWN
-   ========================================================= */
 
 .nav-dropdown {
   position: relative;
