@@ -118,7 +118,119 @@ a {
   color: var(--accent);
   background: var(--soft);
 }
+/* =========================================
+   MORE... DROPDOWN MENU
+   ========================================= */
 
+.more-menu {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+/* More... button */
+.more-menu summary {
+  list-style: none;
+  cursor: pointer;
+  color: #4f5862;
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: .9rem;
+  font-weight: 500;
+  transition: background .2s ease, color .2s ease;
+}
+
+/* Remove default triangle */
+.more-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-menu summary::marker {
+  display: none;
+}
+
+/* Hover / opened state */
+.more-menu summary:hover,
+.more-menu[open] summary {
+  color: var(--accent);
+  background: var(--soft);
+}
+
+/* Dropdown box */
+.more-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 190px;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+
+  padding: 6px;
+  z-index: 100;
+}
+
+/* Dropdown links */
+.more-dropdown a {
+  display: block;
+  width: 100%;
+
+  padding: 10px 12px;
+  border-radius: 7px;
+
+  color: #4f5862;
+  text-decoration: none;
+
+  font-size: .88rem;
+  font-weight: 500;
+  white-space: nowrap;
+
+  transition: background .2s ease, color .2s ease;
+}
+
+/* Dropdown hover */
+.more-dropdown a:hover {
+  color: var(--accent);
+  background: var(--soft);
+}
+
+/* =========================================
+   MOBILE MORE MENU
+   ========================================= */
+
+@media (max-width: 720px) {
+
+  .more-menu {
+    width: 100%;
+  }
+
+  .more-menu summary {
+    width: 100%;
+    padding: 11px 12px;
+  }
+
+  .more-dropdown {
+    position: static;
+    width: 100%;
+    min-width: 0;
+
+    margin-top: 4px;
+
+    border: 0;
+    border-radius: 8px;
+    box-shadow: none;
+
+    background: var(--soft);
+    padding: 4px;
+  }
+
+  .more-dropdown a {
+    padding: 10px 14px;
+  }
+
+}
 
 /* =========================================================
    MORE DROPDOWN
