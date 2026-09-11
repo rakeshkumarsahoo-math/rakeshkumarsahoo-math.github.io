@@ -6,15 +6,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="description"
-        content="Teaching assistantships, duties, courses, assignments and MATLAB materials of Rakesh Kumar Sahoo.">
+        content="Teaching assistantships, courses, tutorials, assignments and computational materials of Rakesh Kumar Sahoo.">
 
   <title>Teaching | Rakesh Kumar Sahoo</title>
 
   <link rel="stylesheet" href="assets/css/style.css">
   <script defer src="assets/js/script.js"></script>
+
+  <style>
+    /* =====================================================
+       TEACHING COURSE ACCORDION
+       ===================================================== */
+
+    .teaching-course {
+      margin-bottom: 20px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .teaching-course summary {
+      position: relative;
+      cursor: pointer;
+      list-style: none;
+      padding: 28px 32px;
+    }
+
+    .teaching-course summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Arrow */
+    .teaching-course summary::after {
+      content: "⌄";
+      position: absolute;
+      right: 30px;
+      top: 28px;
+      font-size: 22px;
+      font-weight: 600;
+      transition: transform 0.2s ease;
+    }
+
+    .teaching-course[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .teaching-course summary:hover {
+      background: var(--soft);
+    }
+
+    .course-header h2 {
+      margin: 7px 35px 12px 0;
+    }
+
+    .course-role {
+      font-weight: 600;
+      margin: 0 0 18px;
+    }
+
+    .course-instructor {
+      margin: 0;
+    }
+
+    /* Expanded course content */
+
+    .course-details {
+      border-top: 1px solid var(--border);
+      padding: 26px 32px 32px;
+    }
+
+    .course-details h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .course-details h3:not(:first-child) {
+      margin-top: 28px;
+    }
+
+    .course-details p {
+      line-height: 1.7;
+    }
+
+    /* Teaching materials buttons */
+
+    .material-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .material-button {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--text);
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+
+    .material-button:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    /* Course list spacing */
+
+    .teaching-list {
+      margin-top: 10px;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+
+      .teaching-course summary {
+        padding: 22px 20px;
+      }
+
+      .teaching-course summary::after {
+        right: 20px;
+        top: 22px;
+      }
+
+      .course-details {
+        padding: 22px 20px 26px;
+      }
+
+      .course-header h2 {
+        margin-right: 30px;
+      }
+    }
+  </style>
+
 </head>
 
+
 <body>
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
 
 <header class="site-header">
 
@@ -49,14 +185,26 @@
 </header>
 
 
+<!-- =====================================================
+     MAIN CONTENT
+     ===================================================== -->
+
 <main class="container page">
+
 
   <!-- PAGE HEADER -->
 
   <div class="page-header">
-<p class="eyebrow">Teaching & Academic Support</p>
-<h1>Teaching</h1>
- <p>
+
+    <p class="eyebrow">
+      Teaching & Academic Support
+    </p>
+
+    <h1>
+      Teaching
+    </h1>
+
+    <p>
       Teaching assistantships, laboratory instruction, tutorials,
       assignments, and computational materials.
     </p>
@@ -68,206 +216,329 @@
        TEACHING ASSISTANTSHIPS
        ===================================================== -->
 
-  <section class="section">
-
-    <div class="section-heading">
-
-      <p class="eyebrow">Teaching Experience</p>
+  <div class="teaching-list">
 
 
-    </div>
+    <!-- =================================================
+         OPTIMIZATION TECHNIQUES LAB
+         ================================================= -->
+
+    <details class="content-card teaching-course">
+
+      <summary>
+
+        <div class="course-header">
+
+          <span class="date">
+            AUTUMN 2026–27
+          </span>
+
+          <h2>
+            Optimization Techniques Lab
+          </h2>
+
+          <p class="course-role">
+            Teaching Assistant, M.Sc. — IIT Bhubaneswar
+          </p>
+
+          <p class="course-instructor">
+            <strong>Instructor:</strong>
+            Dr. Bankim Chandra Mandal
+          </p>
+
+        </div>
+
+      </summary>
 
 
-    <!-- Optimization Techniques -->
+      <div class="course-details">
 
-    <section class="content-card">
+        <h3>
+          Course Description
+        </h3>
 
-      <span class="date">
-        Autumn 2026–27
-      </span>
-
-      <h2>
-        Optimization Techniques Lab
-      </h2>
-
-      <h3>
-       Teaching Assistant, M.Sc. — IIT Bhubaneswar
-      </h3>
-      <h4>
-        <strong>Instructor:</strong>
-        Dr. Bankim Chandra Mandal
-      </h4>
-
-      <h3>Course Description</h3>
-
-      <p>
-        Covers <strong>linear and nonlinear optimization</strong>, including linear programming, simplex and revised simplex methods, duality, sensitivity analysis, transportation and assignment problems, Lagrange multipliers, KKT conditions, convex optimization, and numerical optimization methods such as line search, 
-        gradient, Newton, conjugate direction, quasi-Newton, projected gradient, and penalty methods.  <strong>Computational assignments are implemented in MATLAB.</strong>
-      </p>
+        <p>
+          Covers <strong>linear and nonlinear optimization</strong>,
+          including linear programming, simplex and revised simplex
+          methods, duality, sensitivity analysis, transportation and
+          assignment problems, Lagrange multipliers, KKT conditions,
+          convex optimization, and numerical optimization methods such
+          as line search, gradient, Newton, conjugate direction,
+          quasi-Newton, projected gradient, and penalty methods.
+          <strong>Computational assignments are implemented in
+          MATLAB.</strong>
+        </p>
 
 
+        <h3>
+          Teaching Materials
+        </h3>
 
-      <h3>Teaching Materials</h3>
+        <div class="material-links">
 
-      <div class="button-row">
+          <!-- Replace # with actual file paths later -->
 
-        <a class="button secondary"
-           href="assets/materials/optimization/Optimization_Tutorial_4.pdf"
-           target="_blank">
+          <a href="#"
+             class="material-button">
+            Tutorial 4
+          </a>
 
-          Tutorial 4
+          <a href="#"
+             class="material-button">
+            Practice Questions
+          </a>
 
-        </a>
+        </div>
 
-        <a class="button secondary"
-           href="assets/materials/optimization/Optimization_Practice_Questions.pdf"
-           target="_blank">
 
-          Practice Questions
+        <h3>
+          MATLAB Codes
+        </h3>
 
-        </a>
+        <div class="material-links">
+
+          <a href="assets/materials/optimization/linprog.m"
+             class="material-button"
+             target="_blank">
+            linprog
+          </a>
+
+          <a href="#"
+             class="material-button">
+            fmincon
+          </a>
+
+          <a href="#"
+             class="material-button">
+            quadprog
+          </a>
+
+        </div>
 
       </div>
 
+    </details>
 
-      <h3>MATLAB Codes</h3>
 
-      <div class="button-row">
 
-        <a class="button secondary"
-           href="assets/materials/optimization/linprog.m"
-           target="_blank">
-
-          linprog
-
-        </a>
-
-        <a class="button secondary"
-           href="assets/materials/optimization/fmincon.m"
-           target="_blank">
-
-          fmincon
-
-        </a>
-
-        <a class="button secondary"
-           href="assets/materials/optimization/quadprog.m"
-           target="_blank">
-
-          quadprog
-
-        </a>
-
-      </div>
-
-    </section>
- </section>
-
-    <!-- =====================================================
+    <!-- =================================================
          NUMERICAL METHODS
-         ===================================================== -->
+         ================================================= -->
 
-    
-    <section class="content-card">
+    <details class="content-card teaching-course">
 
-      <span class="date">
-        Spring 2025–26
-      </span>
+      <summary>
 
-      <h2>
-        Numerical Methods
-      </h2>
+        <div class="course-header">
 
-      <h3>
-        ITEP — IIT Bhubaneswar
-      </h3>
+          <span class="date">
+            SPRING 2025–26
+          </span>
 
-      <p>
-        <strong>Teaching Assistant</strong>
-      </p>
+          <h2>
+            Numerical Methods
+          </h2>
 
-      <p>
-        <strong>Instructor:</strong>
-        Prof. T.V.S. Sekhar
-      </p>
+          <p class="course-role">
+            Teaching Assistant, ITEP — IIT Bhubaneswar
+          </p>
 
+          <p class="course-instructor">
+            <strong>Instructor:</strong>
+            Prof. T.V.S. Sekhar
+          </p>
 
-      <h3>Course Description</h3>
+        </div>
 
-      <p>
-        The course covers sources of numerical errors, round-off errors,
-        truncation errors, floating-point arithmetic, convergence,
-        Gaussian elimination, Gauss–Jordan elimination, Gauss–Seidel
-        method, diagonal dominance, banded matrices, and storage
-        schemes for banded matrices. Other topics include the Newton–Raphson method, local and global
-        minima, rates of convergence, convergence criteria, conjugate
-        gradient method, Taylor series, Euler method, Runge–Kutta
-        methods, and finite difference methods.
-      </p>
+      </summary>
 
 
-    </section>
- </section>
+      <div class="course-details">
 
-    <!-- =====================================================
-         COMPUTER PROGRAMMING
-         ===================================================== -->
+        <h3>
+          Course Description
+        </h3>
 
-    
-    <section class="content-card">
-
-      <span class="date">
-        Autumn 2025–26
-      </span>
-
-      <h2>
-        Computer Programming and Data Structures Lab
-      </h2>
-
-      <h3>
-        M.Sc. — IIT Bhubaneswar
-      </h3>
-
-      <p>
-        <strong>Teaching Assistant</strong>
-      </p>
-
-      <p>
-        <strong>Instructor:</strong>
-        Prof. Akshay Kumar Ojha
-      </p>
+        <p>
+          Covers sources of numerical errors, round-off errors,
+          truncation errors, floating-point arithmetic, convergence,
+          Gaussian elimination, Gauss–Jordan elimination, Gauss–Seidel
+          method, diagonal dominance, banded matrices, and storage
+          schemes for banded matrices. Other topics include the
+          Newton–Raphson method, local and global minima, rates of
+          convergence, convergence criteria, conjugate gradient method,
+          Taylor series, Euler method, Runge–Kutta methods, and finite
+          difference methods.
+        </p>
 
 
-      <h3>Course Description</h3>
+        <h3>
+          Teaching Materials
+        </h3>
 
-      <p>
-        The course introduces programming using C, including data types,
-        variables, operators, expressions, statements, control
-        structures, functions, arrays, pointers, recursion, structures,
-        memory management, files, input/output, testing and debugging. Data structures covered include arrays, stacks, queues,
-        linked lists, trees, binary trees, searching and sorting
-        algorithms, including linear search, binary search,
-        insertion sort, bubble sort, and selection sort.
-      </p>
+        <div class="material-links">
 
-    </section>
+          <!-- Add your files here later -->
 
-  </section>
- </section>
+          <a href="#"
+             class="material-button">
+            Tutorials
+          </a>
+
+          <a href="#"
+             class="material-button">
+            Practice Questions
+          </a>
+
+          <a href="#"
+             class="material-button">
+            Assignments
+          </a>
+
+        </div>
+
+
+        <h3>
+          Computational Materials
+        </h3>
+
+        <div class="material-links">
+
+          <!-- Add MATLAB / numerical-method codes here later -->
+
+          <a href="#"
+             class="material-button">
+            MATLAB Codes
+          </a>
+
+        </div>
+
+      </div>
+
+    </details>
+
+
+
+    <!-- =================================================
+         COMPUTER PROGRAMMING AND DATA STRUCTURES
+         ================================================= -->
+
+    <details class="content-card teaching-course">
+
+      <summary>
+
+        <div class="course-header">
+
+          <span class="date">
+            AUTUMN 2025–26
+          </span>
+
+          <h2>
+            Computer Programming and Data Structures Lab
+          </h2>
+
+          <p class="course-role">
+            Teaching Assistant, M.Sc. — IIT Bhubaneswar
+          </p>
+
+          <p class="course-instructor">
+            <strong>Instructor:</strong>
+            Prof. Akshay Kumar Ojha
+          </p>
+
+        </div>
+
+      </summary>
+
+
+      <div class="course-details">
+
+        <h3>
+          Course Description
+        </h3>
+
+        <p>
+          Introduces programming using <strong>C</strong>, covering
+          data types, variables, operators, expressions, control
+          structures, functions, arrays, pointers, recursion,
+          structures, memory management, files, input/output, testing,
+          and debugging. Data structures include arrays, stacks,
+          queues, linked lists, trees, and binary trees, along with
+          searching and sorting algorithms such as linear search,
+          binary search, insertion sort, bubble sort, and selection
+          sort.
+        </p>
+
+
+        <h3>
+          Teaching Materials
+        </h3>
+
+        <div class="material-links">
+
+          <!-- Add your files here later -->
+
+          <a href="#"
+             class="material-button">
+            Lab Assignments
+          </a>
+
+          <a href="#"
+             class="material-button">
+            Practice Questions
+          </a>
+
+          <a href="#"
+             class="material-button">
+            Programming Materials
+          </a>
+
+        </div>
+
+
+        <h3>
+          Programming Codes
+        </h3>
+
+        <div class="material-links">
+
+          <!-- Add your C / C++ files here later -->
+
+          <a href="#"
+             class="material-button">
+            C Programs
+          </a>
+
+          <a href="#"
+             class="material-button">
+            Data Structures
+          </a>
+
+        </div>
+
+      </div>
+
+    </details>
+
+
+  </div>
+
 
   <!-- =====================================================
        COMPUTATIONAL MATERIALS
-     
-  ===================================================== -->
+       ===================================================== -->
 
- 
   <section class="section">
 
     <div class="section-heading">
 
-      <p class="eyebrow">Resources</p>
+      <p class="eyebrow">
+        Resources
+      </p>
 
-      <h2>Computational Materials</h2>
+      <h2>
+        Computational Materials
+      </h2>
 
     </div>
 
@@ -275,13 +546,19 @@
     <div class="grid three">
 
 
+      <!-- MATLAB -->
+
       <a class="feature-card"
          href="assets/materials/optimization/linprog.m"
          target="_blank">
 
-        <span class="icon">⌘</span>
+        <span class="icon">
+          ⌘
+        </span>
 
-        <h3>MATLAB Codes</h3>
+        <h3>
+          MATLAB Codes
+        </h3>
 
         <p>
           MATLAB implementations of numerical optimization
@@ -291,14 +568,18 @@
       </a>
 
 
+      <!-- ASSIGNMENTS -->
+
       <a class="feature-card"
-         href="#"
+         href="#">
 
-         >
+        <span class="icon">
+          ◫
+        </span>
 
-        <span class="icon">◫</span>
-
-        <h3>Assignments</h3>
+        <h3>
+          Assignments
+        </h3>
 
         <p>
           Laboratory assignments, tutorial sheets, and
@@ -308,23 +589,50 @@
       </a>
 
 
+      <!-- PROGRAMMING -->
+
+      <a class="feature-card"
+         href="#">
+
+        <span class="icon">
+          &lt;/&gt;
+        </span>
+
+        <h3>
+          Programming
+        </h3>
+
+        <p>
+          Programming examples and data-structure exercises
+          for laboratory practice.
+        </p>
+
+      </a>
+
+
     </div>
 
   </section>
- </section>
+
+
 
   <!-- =====================================================
-       NOTE
+       TEACHING PHILOSOPHY
        ===================================================== -->
 
-  
   <section class="content-card">
 
-    <h2>Teaching Philosophy</h2>
+    <h2>
+      Teaching Philosophy
+    </h2>
 
     <p>
-     I believe true mathematical literacy requires understanding the 'why' before the 'how.' Rather than relying on rote formula memorization, my teaching emphasizes core conceptual framework and logical reasoning.
-     Once students master these underlying foundations, they can confidently generalize and apply them to solve any problem.
+      I believe true mathematical literacy requires understanding
+      the <em>“why”</em> before the <em>“how.”</em> Rather than
+      relying on rote formula memorization, my teaching emphasizes
+      core conceptual frameworks and logical reasoning. Once students
+      master these underlying foundations, they can confidently
+      generalize and apply them to solve a wide range of problems.
     </p>
 
   </section>
@@ -332,6 +640,11 @@
 
 </main>
 
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
 
 <footer class="footer">
 
@@ -349,6 +662,6 @@
 
 </footer>
 
-</body>
 
+</body>
 </html>
