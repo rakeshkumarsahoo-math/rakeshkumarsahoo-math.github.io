@@ -38,13 +38,9 @@ html {
 
 body {
   margin: 0;
-
   background: var(--bg);
-
   color: var(--text);
-
   font-family: Inter, Arial, sans-serif;
-
   line-height: 1.7;
 }
 
@@ -54,7 +50,6 @@ a {
 
 .container {
   width: min(calc(100% - 40px), var(--max));
-
   margin-inline: auto;
 }
 
@@ -65,13 +60,10 @@ a {
 
 .site-header {
   position: sticky;
-
   top: 0;
-
   z-index: 1000;
 
   background: rgba(255, 255, 255, 0.94);
-
   backdrop-filter: blur(10px);
 
   border-bottom: 1px solid var(--border);
@@ -81,9 +73,7 @@ a {
   min-height: 74px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   gap: 24px;
@@ -96,7 +86,6 @@ a {
 
 .brand {
   font-weight: 800;
-
   font-size: 1.08rem;
 
   white-space: nowrap;
@@ -107,9 +96,8 @@ a {
 }
 
 .brand:hover {
-  text-decoration: none !important;
-
   color: var(--text);
+  text-decoration: none !important;
 }
 
 
@@ -119,9 +107,7 @@ a {
 
 .nav {
   display: flex;
-
   align-items: center;
-
   justify-content: flex-end;
 
   gap: 4px;
@@ -130,12 +116,9 @@ a {
 }
 
 
-/*
-   Normal navigation links only.
-   
-   We deliberately use .nav > a here so that
-   the More... dropdown links are NOT affected.
-*/
+/* ---------------------------------------------------------
+   NORMAL NAVIGATION LINKS
+   --------------------------------------------------------- */
 
 .nav > a {
   display: block;
@@ -147,12 +130,12 @@ a {
   color: #4f5862;
 
   font-size: 0.9rem;
-
   font-weight: 500;
 
   text-decoration: none !important;
 
   border: none !important;
+  border-bottom: none !important;
 
   box-shadow: none !important;
 
@@ -161,29 +144,21 @@ a {
     background 0.2s ease;
 }
 
-
-/* Normal navigation hover */
-
 .nav > a:hover {
   color: var(--accent);
-
   background: var(--soft);
 
   text-decoration: none !important;
-
+  border: none !important;
   border-bottom: none !important;
 }
 
-
-/* Active navigation */
-
 .nav > a.active {
   color: var(--accent);
-
   background: var(--soft);
 
   text-decoration: none !important;
-
+  border: none !important;
   border-bottom: none !important;
 }
 
@@ -193,16 +168,15 @@ a {
    ========================================================= */
 
 /*
-   The More menu is a normal <div>.
-   It contains:
-   
-       More...
-           |
-           └── CV
-           └── Picture Gallery
-           └── Important Links
-           └── Miscellaneous
-           └── Fun Stuff
+   IMPORTANT:
+
+   This is a normal <div>, NOT <details>.
+
+   Therefore the browser will NOT create
+   the unwanted triangle/arrow automatically.
+
+   The dropdown opens when the mouse is moved
+   over "More...".
 */
 
 .more-menu {
@@ -218,18 +192,7 @@ a {
    MORE... LINK
    ========================================================= */
 
-/*
-   VERY IMPORTANT:
-   These rules explicitly remove every possible
-   underline/border decoration.
-*/
-
-.nav .more-menu .more-link,
-.nav .more-menu .more-link:link,
-.nav .more-menu .more-link:visited,
-.nav .more-menu .more-link:hover,
-.nav .more-menu .more-link:focus,
-.nav .more-menu .more-link:active {
+.more-menu .more-link {
   display: block;
 
   padding: 9px 10px;
@@ -241,98 +204,72 @@ a {
   background: transparent;
 
   font-family: inherit;
-
   font-size: 0.9rem;
-
   font-weight: 500;
+
+  white-space: nowrap;
 
   cursor: pointer;
 
   /*
-     Remove underline
+     Completely remove underline.
   */
   text-decoration: none !important;
-
   text-decoration-line: none !important;
 
-  text-decoration-style: none !important;
-
-  text-decoration-color: transparent !important;
-
   /*
-     Remove possible borders
+     Remove all borders.
   */
   border: none !important;
-
-  border-bottom: 0 !important;
+  border-bottom: none !important;
 
   /*
-     Remove possible shadows
+     Remove browser/button-like effects.
   */
   box-shadow: none !important;
-
-  /*
-     Remove outline-like effects
-  */
   outline: none;
 }
 
 
-/* More... hover */
+/* More hover */
 
-.nav .more-menu:hover .more-link {
+.more-menu:hover .more-link {
+  color: var(--accent);
+  background: var(--soft);
+
+  text-decoration: none !important;
+
+  border: none !important;
+  border-bottom: none !important;
+
+  box-shadow: none !important;
+}
+
+
+/* More focus */
+
+.more-menu .more-link:focus,
+.more-menu .more-link:focus-visible {
   color: var(--accent);
 
   background: var(--soft);
 
   text-decoration: none !important;
 
-  text-decoration-line: none !important;
-
   border: none !important;
-
-  border-bottom: 0 !important;
-
-  box-shadow: none !important;
-}
-
-
-/* More... focus */
-
-.nav .more-menu .more-link:focus {
-  text-decoration: none !important;
-
-  border: none !important;
+  border-bottom: none !important;
 
   outline: none;
-}
-
-
-/* More... active */
-
-.nav .more-menu .more-link:active {
-  text-decoration: none !important;
-
-  border: none !important;
-
   box-shadow: none !important;
 }
 
 
-/*
-   In case any pseudo-element from another rule
-   creates the line.
-*/
+/* Remove any pseudo-element */
 
-.nav .more-menu .more-link::before,
-.nav .more-menu .more-link::after {
+.more-menu .more-link::before,
+.more-menu .more-link::after {
   content: none !important;
-
   display: none !important;
-
-  border: none !important;
-
-  text-decoration: none !important;
 }
 
 
@@ -344,25 +281,24 @@ a {
   position: absolute;
 
   top: calc(100% + 6px);
-
   right: 0;
 
-  min-width: 200px;
+  min-width: 210px;
 
   padding: 6px;
 
   background: var(--surface);
 
   border: 1px solid var(--border);
-
   border-radius: 10px;
 
   box-shadow: var(--shadow);
 
+  /*
+     Hidden initially.
+  */
   opacity: 0;
-
   visibility: hidden;
-
   pointer-events: none;
 
   transform: translateY(-6px);
@@ -377,15 +313,34 @@ a {
 
 
 /*
-   Show dropdown when cursor moves over More...
+   Small invisible bridge between More...
+   and dropdown.
+
+   This prevents the dropdown from disappearing
+   while moving the mouse downward.
 */
+
+.more-menu::after {
+  content: "";
+
+  position: absolute;
+
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  height: 8px;
+
+  background: transparent;
+}
+
+
+/* Show dropdown on hover */
 
 .more-menu:hover .more-dropdown,
 .more-menu:focus-within .more-dropdown {
   opacity: 1;
-
   visibility: visible;
-
   pointer-events: auto;
 
   transform: translateY(0);
@@ -396,12 +351,7 @@ a {
    MORE DROPDOWN LINKS
    ========================================================= */
 
-.nav .more-dropdown a,
-.nav .more-dropdown a:link,
-.nav .more-dropdown a:visited,
-.nav .more-dropdown a:hover,
-.nav .more-dropdown a:focus,
-.nav .more-dropdown a:active {
+.more-dropdown a {
   display: block;
 
   width: 100%;
@@ -415,26 +365,26 @@ a {
   background: transparent;
 
   font-size: 0.9rem;
-
   font-weight: 500;
 
   white-space: nowrap;
 
   text-decoration: none !important;
 
-  text-decoration-line: none !important;
-
   border: none !important;
-
-  border-bottom: 0 !important;
+  border-bottom: none !important;
 
   box-shadow: none !important;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
 }
 
 
 /* Dropdown link hover */
 
-.nav .more-dropdown a:hover {
+.more-dropdown a:hover {
   color: var(--accent);
 
   background: var(--soft);
@@ -442,8 +392,7 @@ a {
   text-decoration: none !important;
 
   border: none !important;
-
-  border-bottom: 0 !important;
+  border-bottom: none !important;
 }
 
 
@@ -509,7 +458,6 @@ a {
 
 .profile-photo {
   width: 190px;
-
   height: 190px;
 
   object-fit: cover;
@@ -607,7 +555,6 @@ h3 {
 
 .social-links a {
   width: 42px;
-
   height: 42px;
 
   border: 1px solid var(--border);
@@ -615,7 +562,6 @@ h3 {
   border-radius: 10px;
 
   display: grid;
-
   place-items: center;
 
   text-decoration: none !important;
@@ -783,7 +729,6 @@ h3 {
   place-items: center;
 
   width: 40px;
-
   height: 40px;
 
   border-radius: 10px;
@@ -881,7 +826,6 @@ h3 {
   left: 9px;
 
   top: 15px;
-
   bottom: 15px;
 
   width: 2px;
@@ -905,7 +849,6 @@ h3 {
   top: 30px;
 
   width: 20px;
-
   height: 20px;
 
   border-radius: 50%;
@@ -990,7 +933,6 @@ h3 {
 
 .cv-icon {
   width: 72px;
-
   height: 72px;
 
   border-radius: 14px;
@@ -1021,33 +963,6 @@ code {
 
 
 /* =========================================================
-   FOOTER
-   ========================================================= */
-
-.footer {
-  border-top: 1px solid var(--border);
-
-  background: white;
-}
-
-.footer-inner {
-  min-height: 78px;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  gap: 20px;
-
-  color: #78818b;
-
-  font-size: 0.82rem;
-}
-
-
-/* =========================================================
    TEACHING PAGE
    ========================================================= */
 
@@ -1068,6 +983,9 @@ code {
   display: none;
 }
 
+
+/* Course arrow */
+
 .teaching-course summary::after {
   content: "⌄";
 
@@ -1076,12 +994,16 @@ code {
   color: var(--accent);
 
   font-size: 1.2rem;
+
+  line-height: 1;
 }
 
 .teaching-course[open] summary::after {
   content: "⌃";
 }
 
+
+/* Course heading */
 
 .course-header h2 {
   margin-top: 5px;
@@ -1104,7 +1026,7 @@ code {
 }
 
 
-/* Course expanded content */
+/* Expanded course content */
 
 .course-details {
   border-top: 1px solid var(--border);
@@ -1199,6 +1121,33 @@ code {
 
 
 /* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+  border-top: 1px solid var(--border);
+
+  background: white;
+}
+
+.footer-inner {
+  min-height: 78px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+
+  color: #78818b;
+
+  font-size: 0.82rem;
+}
+
+
+/* =========================================================
    RESPONSIVE — TABLET
    ========================================================= */
 
@@ -1209,7 +1158,7 @@ code {
   }
 
   .nav > a,
-  .nav .more-menu .more-link {
+  .more-menu .more-link {
     padding: 8px 7px;
 
     font-size: 0.82rem;
@@ -1260,7 +1209,6 @@ code {
     top: 74px;
 
     left: 0;
-
     right: 0;
 
     padding: 10px 14px;
@@ -1282,7 +1230,7 @@ code {
 
 
   .nav > a,
-  .nav .more-menu .more-link {
+  .more-menu .more-link {
     width: 100%;
 
     padding: 11px 12px;
@@ -1305,8 +1253,8 @@ code {
 
 
   /*
-     On mobile the dropdown is hidden until
-     More... is hovered/focused.
+     On mobile the dropdown appears when
+     More... is hovered or focused.
   */
 
   .more-dropdown {
@@ -1413,4 +1361,49 @@ code {
 
     align-items: flex-start;
   }
+
+
+  /* -------------------------------------------------------
+     MOBILE TEACHING
+     ------------------------------------------------------- */
+
+  .teaching-course summary {
+    padding: 22px;
+  }
+
+  .teaching-course summary::after {
+    margin-top: 2px;
+  }
+
+  .course-header {
+    padding-right: 30px;
+  }
+
+  .course-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .course-details {
+    padding: 22px;
+  }
+
+  .material-links {
+    gap: 8px;
+  }
+
+  .material-button {
+    padding: 9px 14px;
+
+    font-size: 0.85rem;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE VISITOR COUNTER
+     ------------------------------------------------------- */
+
+  .visitor-counter {
+    padding: 16px;
+  }
+
 }
