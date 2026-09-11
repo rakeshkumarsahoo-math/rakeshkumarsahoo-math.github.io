@@ -25,7 +25,7 @@
 
 
 /* =========================================================
-   GLOBAL
+   GLOBAL RESET
    ========================================================= */
 
 * {
@@ -38,9 +38,13 @@ html {
 
 body {
   margin: 0;
+
   background: var(--bg);
+
   color: var(--text);
+
   font-family: Inter, Arial, sans-serif;
+
   line-height: 1.7;
 }
 
@@ -50,6 +54,7 @@ a {
 
 .container {
   width: min(calc(100% - 40px), var(--max));
+
   margin-inline: auto;
 }
 
@@ -60,10 +65,13 @@ a {
 
 .site-header {
   position: sticky;
+
   top: 0;
-  z-index: 100;
+
+  z-index: 1000;
 
   background: rgba(255, 255, 255, 0.94);
+
   backdrop-filter: blur(10px);
 
   border-bottom: 1px solid var(--border);
@@ -73,17 +81,35 @@ a {
   min-height: 74px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   gap: 24px;
 }
 
+
+/* =========================================================
+   WEBSITE BRAND
+   ========================================================= */
+
 .brand {
   font-weight: 800;
-  text-decoration: none;
+
   font-size: 1.08rem;
+
   white-space: nowrap;
+
+  color: var(--text);
+
+  text-decoration: none !important;
+}
+
+.brand:hover {
+  text-decoration: none !important;
+
+  color: var(--text);
 }
 
 
@@ -93,36 +119,220 @@ a {
 
 .nav {
   display: flex;
+
   align-items: center;
+
   justify-content: flex-end;
 
   gap: 4px;
+
   flex-wrap: nowrap;
 }
 
-.nav > a,
-.more-link {
-  text-decoration: none;
+
+/*
+   Normal navigation links only.
+   
+   We deliberately use .nav > a here so that
+   the More... dropdown links are NOT affected.
+*/
+
+.nav > a {
+  display: block;
+
+  padding: 9px 10px;
+
+  border-radius: 8px;
 
   color: #4f5862;
 
-  padding: 9px 10px;
-  border-radius: 8px;
-
   font-size: 0.9rem;
+
   font-weight: 500;
 
-  display: block;
+  text-decoration: none !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
 
   transition:
     color 0.2s ease,
     background 0.2s ease;
 }
 
-.nav > a:hover,
+
+/* Normal navigation hover */
+
+.nav > a:hover {
+  color: var(--accent);
+
+  background: var(--soft);
+
+  text-decoration: none !important;
+
+  border-bottom: none !important;
+}
+
+
+/* Active navigation */
+
 .nav > a.active {
   color: var(--accent);
+
   background: var(--soft);
+
+  text-decoration: none !important;
+
+  border-bottom: none !important;
+}
+
+
+/* =========================================================
+   MORE MENU
+   ========================================================= */
+
+/*
+   The More menu is a normal <div>.
+   It contains:
+   
+       More...
+           |
+           └── CV
+           └── Picture Gallery
+           └── Important Links
+           └── Miscellaneous
+           └── Fun Stuff
+*/
+
+.more-menu {
+  position: relative;
+
+  display: block;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   MORE... LINK
+   ========================================================= */
+
+/*
+   VERY IMPORTANT:
+   These rules explicitly remove every possible
+   underline/border decoration.
+*/
+
+.nav .more-menu .more-link,
+.nav .more-menu .more-link:link,
+.nav .more-menu .more-link:visited,
+.nav .more-menu .more-link:hover,
+.nav .more-menu .more-link:focus,
+.nav .more-menu .more-link:active {
+  display: block;
+
+  padding: 9px 10px;
+
+  border-radius: 8px;
+
+  color: #4f5862;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  font-size: 0.9rem;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /*
+     Remove underline
+  */
+  text-decoration: none !important;
+
+  text-decoration-line: none !important;
+
+  text-decoration-style: none !important;
+
+  text-decoration-color: transparent !important;
+
+  /*
+     Remove possible borders
+  */
+  border: none !important;
+
+  border-bottom: 0 !important;
+
+  /*
+     Remove possible shadows
+  */
+  box-shadow: none !important;
+
+  /*
+     Remove outline-like effects
+  */
+  outline: none;
+}
+
+
+/* More... hover */
+
+.nav .more-menu:hover .more-link {
+  color: var(--accent);
+
+  background: var(--soft);
+
+  text-decoration: none !important;
+
+  text-decoration-line: none !important;
+
+  border: none !important;
+
+  border-bottom: 0 !important;
+
+  box-shadow: none !important;
+}
+
+
+/* More... focus */
+
+.nav .more-menu .more-link:focus {
+  text-decoration: none !important;
+
+  border: none !important;
+
+  outline: none;
+}
+
+
+/* More... active */
+
+.nav .more-menu .more-link:active {
+  text-decoration: none !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+}
+
+
+/*
+   In case any pseudo-element from another rule
+   creates the line.
+*/
+
+.nav .more-menu .more-link::before,
+.nav .more-menu .more-link::after {
+  content: none !important;
+
+  display: none !important;
+
+  border: none !important;
+
+  text-decoration: none !important;
 }
 
 
@@ -130,60 +340,30 @@ a {
    MORE DROPDOWN
    ========================================================= */
 
-/*
-   Important:
-   .more-menu is a container, not a normal navigation link.
-*/
-
-.more-menu {
-  position: relative;
-  display: block;
-}
-
-
-/* More... button */
-
-.more-menu .more-link {
-  cursor: pointer;
-
-  /* Remove underline completely */
-  text-decoration: none !important;
-
-  color: #4f5862;
-}
-
-.more-menu .more-link:hover,
-.more-menu:hover .more-link {
-  color: var(--accent);
-  background: var(--soft);
-
-  /* Make sure underline NEVER appears */
-  text-decoration: none !important;
-}
-
-
-/* Dropdown box */
-
 .more-dropdown {
   position: absolute;
 
   top: calc(100% + 6px);
+
   right: 0;
 
-  min-width: 190px;
+  min-width: 200px;
+
+  padding: 6px;
 
   background: var(--surface);
 
   border: 1px solid var(--border);
-  border-radius: 10px;
 
-  padding: 6px;
+  border-radius: 10px;
 
   box-shadow: var(--shadow);
 
-  /* Hidden initially */
   opacity: 0;
+
   visibility: hidden;
+
+  pointer-events: none;
 
   transform: translateY(-6px);
 
@@ -191,52 +371,79 @@ a {
     opacity 0.18s ease,
     transform 0.18s ease,
     visibility 0.18s ease;
+
+  z-index: 2000;
 }
 
 
-/* Show dropdown when mouse is over More */
+/*
+   Show dropdown when cursor moves over More...
+*/
 
 .more-menu:hover .more-dropdown,
 .more-menu:focus-within .more-dropdown {
   opacity: 1;
+
   visibility: visible;
+
+  pointer-events: auto;
 
   transform: translateY(0);
 }
 
 
-/* Dropdown links */
+/* =========================================================
+   MORE DROPDOWN LINKS
+   ========================================================= */
 
-.more-dropdown a {
+.nav .more-dropdown a,
+.nav .more-dropdown a:link,
+.nav .more-dropdown a:visited,
+.nav .more-dropdown a:hover,
+.nav .more-dropdown a:focus,
+.nav .more-dropdown a:active {
   display: block;
+
+  width: 100%;
 
   padding: 10px 13px;
 
+  border-radius: 7px;
+
   color: #4f5862;
 
+  background: transparent;
+
   font-size: 0.9rem;
+
   font-weight: 500;
-
-  text-decoration: none !important;
-
-  border-radius: 7px;
 
   white-space: nowrap;
 
-  transition:
-    color 0.2s ease,
-    background 0.2s ease;
+  text-decoration: none !important;
+
+  text-decoration-line: none !important;
+
+  border: none !important;
+
+  border-bottom: 0 !important;
+
+  box-shadow: none !important;
 }
 
 
-/* Dropdown hover */
+/* Dropdown link hover */
 
-.more-dropdown a:hover {
+.nav .more-dropdown a:hover {
   color: var(--accent);
 
   background: var(--soft);
 
   text-decoration: none !important;
+
+  border: none !important;
+
+  border-bottom: 0 !important;
 }
 
 
@@ -248,6 +455,7 @@ a {
   display: none;
 
   border: 1px solid var(--border);
+
   background: white;
 
   border-radius: 8px;
@@ -257,11 +465,13 @@ a {
   font-size: 1.1rem;
 
   cursor: pointer;
+
+  color: var(--text);
 }
 
 
 /* =========================================================
-   HERO
+   HERO SECTION
    ========================================================= */
 
 .hero {
@@ -288,12 +498,18 @@ a {
   box-shadow: var(--shadow);
 }
 
+
+/* =========================================================
+   PROFILE PHOTO
+   ========================================================= */
+
 .profile-photo-wrap {
   text-align: center;
 }
 
 .profile-photo {
   width: 190px;
+
   height: 190px;
 
   object-fit: cover;
@@ -338,6 +554,7 @@ h1,
 h2,
 h3 {
   line-height: 1.2;
+
   margin-top: 0;
 }
 
@@ -390,6 +607,7 @@ h3 {
 
 .social-links a {
   width: 42px;
+
   height: 42px;
 
   border: 1px solid var(--border);
@@ -397,9 +615,10 @@ h3 {
   border-radius: 10px;
 
   display: grid;
+
   place-items: center;
 
-  text-decoration: none;
+  text-decoration: none !important;
 
   font-size: 0.9rem;
 
@@ -419,6 +638,8 @@ h3 {
   border-color: var(--accent);
 
   transform: translateY(-2px);
+
+  text-decoration: none !important;
 }
 
 .social-links a i {
@@ -441,7 +662,7 @@ h3 {
 .button {
   display: inline-block;
 
-  text-decoration: none;
+  text-decoration: none !important;
 
   padding: 10px 17px;
 
@@ -462,6 +683,8 @@ h3 {
 
 .button.primary:hover {
   background: var(--accent-dark);
+
+  text-decoration: none !important;
 }
 
 .button.secondary {
@@ -472,6 +695,8 @@ h3 {
 
 .button.secondary:hover {
   background: var(--soft);
+
+  text-decoration: none !important;
 }
 
 
@@ -527,7 +752,7 @@ h3 {
 }
 
 .feature-card {
-  text-decoration: none;
+  text-decoration: none !important;
 
   transition:
     transform 0.2s ease,
@@ -538,6 +763,8 @@ h3 {
   transform: translateY(-3px);
 
   box-shadow: var(--shadow);
+
+  text-decoration: none !important;
 }
 
 .feature-card p,
@@ -547,7 +774,7 @@ h3 {
 
 
 /* =========================================================
-   CARD ICON
+   CARD ICONS
    ========================================================= */
 
 .icon {
@@ -556,6 +783,7 @@ h3 {
   place-items: center;
 
   width: 40px;
+
   height: 40px;
 
   border-radius: 10px;
@@ -575,7 +803,7 @@ h3 {
 
 
 /* =========================================================
-   SPACING BETWEEN CARDS
+   CARD SPACING
    ========================================================= */
 
 .content-card + .content-card,
@@ -586,7 +814,7 @@ h3 {
 
 
 /* =========================================================
-   TAGS
+   TAG LIST
    ========================================================= */
 
 .tag-list {
@@ -653,6 +881,7 @@ h3 {
   left: 9px;
 
   top: 15px;
+
   bottom: 15px;
 
   width: 2px;
@@ -672,9 +901,11 @@ h3 {
   position: absolute;
 
   left: 0;
+
   top: 30px;
 
   width: 20px;
+
   height: 20px;
 
   border-radius: 50%;
@@ -686,7 +917,7 @@ h3 {
 
 
 /* =========================================================
-   DATES
+   DATE
    ========================================================= */
 
 .date {
@@ -703,7 +934,7 @@ h3 {
 
 
 /* =========================================================
-   LINKS
+   GENERAL LINKS
    ========================================================= */
 
 .links,
@@ -759,6 +990,7 @@ h3 {
 
 .cv-icon {
   width: 72px;
+
   height: 72px;
 
   border-radius: 14px;
@@ -766,6 +998,7 @@ h3 {
   background: var(--soft);
 
   display: grid;
+
   place-items: center;
 
   color: var(--accent);
@@ -822,6 +1055,9 @@ code {
   overflow: visible;
 }
 
+
+/* Course expandable summary */
+
 .teaching-course summary {
   cursor: pointer;
 
@@ -846,6 +1082,7 @@ code {
   content: "⌃";
 }
 
+
 .course-header h2 {
   margin-top: 5px;
 
@@ -866,6 +1103,9 @@ code {
   color: var(--muted);
 }
 
+
+/* Course expanded content */
+
 .course-details {
   border-top: 1px solid var(--border);
 
@@ -881,6 +1121,11 @@ code {
 .course-details h3:first-child {
   margin-top: 0;
 }
+
+
+/* =========================================================
+   TEACHING MATERIAL BUTTONS
+   ========================================================= */
 
 .material-links {
   display: flex;
@@ -905,7 +1150,7 @@ code {
 
   background: white;
 
-  text-decoration: none;
+  text-decoration: none !important;
 
   font-weight: 600;
 
@@ -924,7 +1169,7 @@ code {
 
   transform: translateY(-2px);
 
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 
@@ -964,7 +1209,7 @@ code {
   }
 
   .nav > a,
-  .more-link {
+  .nav .more-menu .more-link {
     padding: 8px 7px;
 
     font-size: 0.82rem;
@@ -994,14 +1239,18 @@ code {
   }
 
 
-  /* Mobile menu button */
+  /* -------------------------------------------------------
+     MOBILE MENU BUTTON
+     ------------------------------------------------------- */
 
   .menu-toggle {
     display: block;
   }
 
 
-  /* Mobile navigation */
+  /* -------------------------------------------------------
+     MOBILE NAVIGATION
+     ------------------------------------------------------- */
 
   .nav {
     display: none;
@@ -1011,6 +1260,7 @@ code {
     top: 74px;
 
     left: 0;
+
     right: 0;
 
     padding: 10px 14px;
@@ -1032,17 +1282,18 @@ code {
 
 
   .nav > a,
-  .more-link {
+  .nav .more-menu .more-link {
+    width: 100%;
+
     padding: 11px 12px;
 
-    width: 100%;
+    text-align: left;
   }
 
 
-  /*
-     On mobile, More becomes a normal
-     expandable-looking menu item.
-  */
+  /* -------------------------------------------------------
+     MOBILE MORE MENU
+     ------------------------------------------------------- */
 
   .more-menu {
     width: 100%;
@@ -1051,6 +1302,12 @@ code {
   .more-menu .more-link {
     width: 100%;
   }
+
+
+  /*
+     On mobile the dropdown is hidden until
+     More... is hovered/focused.
+  */
 
   .more-dropdown {
     position: static;
@@ -1063,33 +1320,42 @@ code {
 
     padding: 4px 0 4px 12px;
 
+    background: transparent;
+
     border: none;
 
     border-radius: 0;
 
     box-shadow: none;
 
-    background: transparent;
+    transform: none;
 
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+  }
+
+
+  .more-menu:hover .more-dropdown,
+  .more-menu:focus-within .more-dropdown {
     opacity: 1;
 
     visibility: visible;
 
-    transform: none;
-
-    display: none;
+    pointer-events: auto;
   }
 
-  .more-menu:hover .more-dropdown {
-    display: block;
-  }
 
   .more-dropdown a {
     padding: 9px 12px;
   }
 
 
-  /* Main content */
+  /* -------------------------------------------------------
+     MOBILE HERO
+     ------------------------------------------------------- */
 
   .profile-card {
     padding: 30px 22px;
@@ -1099,20 +1365,33 @@ code {
 
   .profile-photo {
     width: 155px;
+
     height: 155px;
   }
+
+
+  /* -------------------------------------------------------
+     MOBILE GRID
+     ------------------------------------------------------- */
 
   .grid.two,
   .grid.three {
     grid-template-columns: 1fr;
   }
 
+
+  /* -------------------------------------------------------
+     MOBILE PAGE
+     ------------------------------------------------------- */
+
   .page {
     padding-top: 40px;
   }
 
 
-  /* Footer */
+  /* -------------------------------------------------------
+     MOBILE FOOTER
+     ------------------------------------------------------- */
 
   .footer-inner {
     flex-direction: column;
@@ -1125,7 +1404,9 @@ code {
   }
 
 
-  /* CV */
+  /* -------------------------------------------------------
+     MOBILE CV
+     ------------------------------------------------------- */
 
   .cv-card {
     flex-direction: column;
