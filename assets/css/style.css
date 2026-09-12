@@ -1485,15 +1485,16 @@ code {
 
 .fun-image {
   display: block;
-  width: 100%;
+  width: min(100%, 520px) !important;
   max-width: 520px !important;
-  height: auto;
-  margin: 24px auto;
+  height: auto !important;
+  margin: 24px auto !important;
   border-radius: 12px;
   border: 1px solid var(--border);
   box-sizing: border-box;
 }
 
 .fun-item {
+  max-width: 100%;
   overflow: hidden;
 }
