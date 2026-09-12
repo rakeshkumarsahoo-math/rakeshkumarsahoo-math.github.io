@@ -1210,66 +1210,52 @@ code {
 
 
   /* -------------------------------------------------------
-     MOBILE MORE MENU
-     ------------------------------------------------------- */
+   MOBILE MORE MENU
+   ------------------------------------------------------- */
 
-  .more-menu {
-    width: 100%;
-  }
+.more-menu {
+  width: 100%;
+}
 
-  .more-menu .more-link {
-    width: 100%;
-  }
-
-
-  /*
-     On mobile the dropdown appears when
-     More... is hovered or focused.
-  */
-
-  .more-dropdown {
-    position: static;
-
-    width: 100%;
-
-    min-width: 0;
-
-    margin-top: 4px;
-
-    padding: 4px 0 4px 12px;
-
-    background: transparent;
-
-    border: none;
-
-    border-radius: 0;
-
-    box-shadow: none;
-
-    transform: none;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-  }
+.more-menu .more-link {
+  width: 100%;
+}
 
 
-  .more-menu:hover .more-dropdown,
-  .more-menu:focus-within .more-dropdown {
-    opacity: 1;
+/* Hide dropdown completely on mobile */
 
-    visibility: visible;
+.more-dropdown {
+  display: none;
 
-    pointer-events: auto;
-  }
+  position: static;
+
+  width: 100%;
+  min-width: 0;
+
+  margin-top: 4px;
+  padding: 4px 0 4px 12px;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  transform: none;
+}
 
 
-  .more-dropdown a {
-    padding: 9px 12px;
-  }
+/* Show dropdown when More... is focused/activated */
 
+.more-menu:focus-within .more-dropdown {
+  display: block;
+}
+
+
+/* Dropdown links */
+
+.more-dropdown a {
+  padding: 9px 12px;
+}
 
   /* -------------------------------------------------------
      MOBILE HERO
