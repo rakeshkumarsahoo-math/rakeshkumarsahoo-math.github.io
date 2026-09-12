@@ -1482,3 +1482,12 @@ code {
   background: var(--soft);
   border-radius: 10px;
 }
+
+.fun-image {
+  display: block;
+  max-width: 520px;
+  width: 100%;
+  margin: 20px auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
