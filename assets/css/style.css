@@ -1498,3 +1498,12 @@ code {
   max-width: 100%;
   overflow: hidden;
 }
+
+/* Hairy Ball Theorem image size */
+.fun-item img.fun-image {
+  display: block !important;
+  width: 350px !important;
+  max-width: 350px !important;
+  height: auto !important;
+  margin: 20px auto !important;
+}
