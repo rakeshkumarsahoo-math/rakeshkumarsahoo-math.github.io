@@ -5,15 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="description"
-    content="Interesting mathematical problems, historical stories, and mathematical curiosities."
-  >
-
   <title>Fun Stuff | Rakesh Kumar Sahoo</title>
 
   <link rel="stylesheet" href="assets/css/style.css">
-  <script defer src="assets/js/script.js"></script>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+
+  <script
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
 
 
