@@ -70,13 +70,13 @@ a {
 }
 
 .nav-container {
-  min-height: 74px;
+  min-height: 66px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  gap: 24px;
+  gap: 16px;
 }
 
 
@@ -86,7 +86,7 @@ a {
 
 .brand {
   font-weight: 800;
-  font-size: 1.08rem;
+  font-size: 1.02rem;
 
   white-space: nowrap;
 
@@ -110,7 +110,7 @@ a {
   align-items: center;
   justify-content: flex-end;
 
-  gap: 4px;
+  gap: 2px;
 
   flex-wrap: nowrap;
 }
@@ -123,13 +123,13 @@ a {
 .nav > a {
   display: block;
 
-  padding: 9px 10px;
+  padding: 7px 8px;
 
   border-radius: 8px;
 
   color: #4f5862;
 
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
 
   text-decoration: none !important;
@@ -195,7 +195,7 @@ a {
 .more-menu .more-link {
   display: block;
 
-  padding: 9px 10px;
+  padding: 7px 8px;
 
   border-radius: 8px;
 
@@ -204,7 +204,7 @@ a {
   background: transparent;
 
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
 
   white-space: nowrap;
@@ -283,7 +283,7 @@ a {
   top: calc(100% + 6px);
   right: 0;
 
-  min-width: 210px;
+  min-width: 200px;
 
   padding: 6px;
 
@@ -356,7 +356,7 @@ a {
 
   width: 100%;
 
-  padding: 10px 13px;
+  padding: 8px 12px;
 
   border-radius: 7px;
 
@@ -920,36 +920,6 @@ h3 {
 
 
 /* =========================================================
-   CV
-   ========================================================= */
-
-.cv-card {
-  display: flex;
-
-  align-items: center;
-
-  gap: 24px;
-}
-
-.cv-icon {
-  width: 72px;
-  height: 72px;
-
-  border-radius: 14px;
-
-  background: var(--soft);
-
-  display: grid;
-
-  place-items: center;
-
-  color: var(--accent);
-
-  font-weight: 800;
-}
-
-
-/* =========================================================
    CODE
    ========================================================= */
 
@@ -1206,12 +1176,12 @@ code {
 
     position: absolute;
 
-    top: 74px;
+    top: 66px;
 
     left: 0;
     right: 0;
 
-    padding: 10px 14px;
+    padding: 8px 12px;
 
     background: white;
 
