@@ -1483,30 +1483,6 @@ code {
   border-radius: 10px;
 }
 
-.fun-image {
-  display: block;
-  width: min(100%, 200px) !important;
-  max-width: 200px !important;
-  height: auto !important;
-  margin: 20px auto !important;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  box-sizing: border-box;
-}
-
-.fun-item {
-  max-width: 100%;
-  overflow: hidden;
-}
-
-/* Hairy Ball Theorem image size */
-.fun-item img.fun-image {
-  display: block !important;
-  width: 200px !important;
-  max-width: 200px !important;
-  height: auto !important;
-  margin: 20px auto !important;
-}
 
 /* =========================================================
    FUN STUFF — SIDE-BY-SIDE IMAGE
@@ -1514,10 +1490,10 @@ code {
 
 .fun-side-by-side {
   display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 40px;
+  grid-template-columns: 300px 1fr;
+  gap: 36px;
   align-items: center;
-  margin-top: 22px;
+  margin-top: 20px;
 }
 
 .fun-image-wrap {
@@ -1528,18 +1504,13 @@ code {
 
 .fun-image {
   display: block;
-  width: 100% !important;
-  max-width: 360px !important;
-  height: auto !important;
-  margin: 0 !important;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
   border-radius: 10px;
   border: 1px solid var(--border);
   box-sizing: border-box;
-}
-
-.fun-explanation {
-  display: flex;
-  align-items: center;
 }
 
 .fun-explanation p {
@@ -1549,10 +1520,7 @@ code {
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
+/* Mobile */
 @media (max-width: 720px) {
 
   .fun-side-by-side {
@@ -1561,7 +1529,8 @@ code {
   }
 
   .fun-image {
-    max-width: 300px !important;
+    width: 280px;
+    max-width: 100%;
   }
 
 }
