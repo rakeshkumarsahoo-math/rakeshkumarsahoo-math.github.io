@@ -1507,3 +1507,61 @@ code {
   height: auto !important;
   margin: 20px auto !important;
 }
+
+/* =========================================================
+   FUN STUFF — SIDE-BY-SIDE IMAGE
+   ========================================================= */
+
+.fun-side-by-side {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 22px;
+}
+
+.fun-image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fun-image {
+  display: block;
+  width: 100% !important;
+  max-width: 360px !important;
+  height: auto !important;
+  margin: 0 !important;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.fun-explanation {
+  display: flex;
+  align-items: center;
+}
+
+.fun-explanation p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 720px) {
+
+  .fun-side-by-side {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .fun-image {
+    max-width: 300px !important;
+  }
+
+}
