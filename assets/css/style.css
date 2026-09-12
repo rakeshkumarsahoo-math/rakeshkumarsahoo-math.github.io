@@ -1091,6 +1091,50 @@ code {
 
 
 /* =========================================================
+   PICTURE GALLERY
+   ========================================================= */
+
+.gallery-event {
+  margin-top: 10px;
+}
+
+.gallery-meta {
+  color: var(--accent) !important;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: -8px;
+  margin-bottom: 18px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.gallery-item {
+  margin: 0;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 5px 20px rgba(25, 40, 55, 0.06);
+}
+
+.gallery-item figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
    FOOTER
    ========================================================= */
 
@@ -1210,52 +1254,57 @@ code {
 
 
   /* -------------------------------------------------------
-   MOBILE MORE MENU
-   ------------------------------------------------------- */
+     MOBILE MORE MENU
+     ------------------------------------------------------- */
 
-.more-menu {
-  width: 100%;
-}
+  .more-menu {
+    width: 100%;
+  }
 
-.more-menu .more-link {
-  width: 100%;
-}
-
-
-/* Hide dropdown completely on mobile */
-
-.more-dropdown {
-  display: none;
-
-  position: static;
-
-  width: 100%;
-  min-width: 0;
-
-  margin-top: 4px;
-  padding: 4px 0 4px 12px;
-
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-
-  transform: none;
-}
+  .more-menu .more-link {
+    width: 100%;
+  }
 
 
-/* Show dropdown when More... is focused/activated */
+  /*
+     On mobile the dropdown appears when
+     More... is hovered or focused.
+  */
 
-.more-menu:focus-within .more-dropdown {
-  display: block;
-}
+  .more-dropdown {
+    display: none;
+
+    position: static;
+
+    width: 100%;
+
+    min-width: 0;
+
+    margin-top: 4px;
+
+    padding: 4px 0 4px 12px;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    transform: none;
+  }
 
 
-/* Dropdown links */
+  .more-menu:focus-within .more-dropdown {
+    display: block;
+  }
 
-.more-dropdown a {
-  padding: 9px 12px;
-}
+
+  .more-dropdown a {
+    padding: 9px 12px;
+  }
+
 
   /* -------------------------------------------------------
      MOBILE HERO
@@ -1351,6 +1400,20 @@ code {
     padding: 9px 14px;
 
     font-size: 0.85rem;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE PICTURE GALLERY
+     ------------------------------------------------------- */
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .gallery-item figcaption {
+    font-size: 0.82rem;
   }
 
 
