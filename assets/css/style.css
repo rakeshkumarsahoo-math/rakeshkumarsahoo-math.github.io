@@ -1490,7 +1490,7 @@ code {
 
 .fun-side-by-side {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 36px;
   align-items: center;
   margin-top: 20px;
@@ -1504,7 +1504,7 @@ code {
 
 .fun-image {
   display: block;
-  width: 300px;
+  width: 200px;
   max-width: 100%;
   height: auto;
   margin: 0;
@@ -1516,7 +1516,7 @@ code {
 .fun-explanation p {
   margin: 0;
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 
@@ -1529,7 +1529,7 @@ code {
   }
 
   .fun-image {
-    width: 280px;
+    width: 180px;
     max-width: 100%;
   }
 
