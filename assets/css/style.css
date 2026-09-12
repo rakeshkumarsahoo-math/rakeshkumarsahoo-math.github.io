@@ -1426,3 +1426,28 @@ code {
   }
 
 }
+
+/* =========================================================
+   IMPORTANT LINKS
+   ========================================================= */
+
+.link-list {
+  margin: 18px 0 0;
+  padding-left: 22px;
+}
+
+.link-list li {
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.link-list a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-list a:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
